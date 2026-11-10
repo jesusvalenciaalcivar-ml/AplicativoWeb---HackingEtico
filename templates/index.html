@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis tareas</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+    form { display: flex; gap: .5rem; }
+    input { flex: 1; padding: .5rem; }
+    button { padding: .5rem 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Mis tareas</h1>
+  <form method="post">
+    <label for="tarea" hidden>Nueva tarea</label>
+    <input id="tarea" name="tarea" placeholder="Nueva tarea" required>
+    <button>Agregar</button>
+  </form>
+  <ul>
+    {% for t in tareas %}<li>{{ t }}</li>{% else %}<li>No hay tareas todavía.</li>{% endfor %}
+  </ul>
+</body>
+</html>
