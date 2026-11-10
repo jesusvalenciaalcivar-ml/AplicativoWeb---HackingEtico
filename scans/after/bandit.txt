@@ -1,0 +1,121 @@
+Run started:2026-11-07 02:04:37.693063+00:00
+
+Test results:
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:6:0
+5	c = app.test_client()
+6	assert b"No hay tareas" in c.get("/").data
+7	c.post("/", data={"tarea": "  "})
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:8:0
+7	c.post("/", data={"tarea": "  "})
+8	assert tareas == [], "no debe guardar tareas vacías"
+9	c.post("/", data={"tarea": "<b>comprar pan</b>"})
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:11:0
+10	html = c.get("/").data
+11	assert b"&lt;b&gt;comprar pan&lt;/b&gt;" in html, "el HTML debe escaparse"
+12	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:14:0
+13	# --- V-02: tarea demasiado larga se rechaza ---
+14	assert c.post("/", data={"tarea": "A" * (MAX_LARGO_TAREA + 1)}).status_code == 400
+15	assert c.post("/", data={"tarea": "A" * 400000}).status_code == 413
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:15:0
+14	assert c.post("/", data={"tarea": "A" * (MAX_LARGO_TAREA + 1)}).status_code == 400
+15	assert c.post("/", data={"tarea": "A" * 400000}).status_code == 413
+16	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:19:0
+18	r = c.get("/")
+19	assert r.headers["X-Frame-Options"] == "DENY"
+20	assert r.headers["X-Content-Type-Options"] == "nosniff"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:20:0
+19	assert r.headers["X-Frame-Options"] == "DENY"
+20	assert r.headers["X-Content-Type-Options"] == "nosniff"
+21	assert "frame-ancestors" in r.headers["Content-Security-Policy"]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:21:0
+20	assert r.headers["X-Content-Type-Options"] == "nosniff"
+21	assert "frame-ancestors" in r.headers["Content-Security-Policy"]
+22	assert "Werkzeug" not in r.headers["Server"]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:22:0
+21	assert "frame-ancestors" in r.headers["Content-Security-Policy"]
+22	assert "Werkzeug" not in r.headers["Server"]
+23	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: ./test_app.py:27:0
+26	c2 = app.test_client()
+27	assert c2.post("/", data={"tarea": "csrf"}).status_code == 400
+28	print("OK")
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 60
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 10
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 10
+Files skipped (0):

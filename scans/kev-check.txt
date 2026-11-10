@@ -1,0 +1,7 @@
+Fuente: https://github.com/cisagov/kev-data (espejo oficial del catálogo KEV de CISA)
+Versión del catálogo: 2026.11.09 | publicada: 2026-11-09T16:16:16.4275Z | entradas: 1772
+CVE-2025-66221 -> NO está en KEV
+CVE-2026-21860 -> NO está en KEV
+CVE-2026-27199 -> NO está en KEV
+CVE-2026-102598 -> NO está en KEV
+CVE-2026-27205 -> NO está en KEV

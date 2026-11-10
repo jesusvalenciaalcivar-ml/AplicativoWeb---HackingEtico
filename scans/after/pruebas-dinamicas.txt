@@ -1,0 +1,41 @@
+$ curl -s -I http://127.0.0.1:5000/
+HTTP/1.1 200 OK
+Content-Length: 834
+Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'
+Content-Type: text/html; charset=utf-8
+Date: Sat, 07 Nov 2026 02:05:03 GMT
+Referrer-Policy: no-referrer
+Server: app
+Set-Cookie: session=eyJjc3JmX3Rva2VuIjoiOWJhMGY4ZGJjZDM1NzU5ZWNkMmJjNzI2MzA5NWVhYmE1MzI1NjExNyJ9.au6HTw.vB-3kayVEDoMLo2Ga5xJpOJt_oI; HttpOnly; Path=/; SameSite=Lax
+Vary: Cookie
+Via: waitress
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+
+
+$ curl -s -o /dev/null -w GET /console -> HTTP %{http_code}
+ http://127.0.0.1:5000/console
+GET /console -> HTTP 404
+
+$ curl -s -o /dev/null -w POST con Origin falso (sin token) -> HTTP %{http_code}
+ -X POST -H Origin: http://sitio-malicioso.example -d tarea=csrf http://127.0.0.1:5000/
+POST con Origin falso (sin token) -> HTTP 400
+
+$ POST de 400000 caracteres (sin token)
+HTTP 413
+$ POST legítimo con token CSRF (302 = aceptado)
+HTTP 302
+$ POST con token y tarea de 501 caracteres
+HTTP 400
+$ 35 POST seguidos con token (límite: 30 por minuto)
+{302: 28, 429: 7}
+GET /static/nul
+  -> HTTP 404
+GET /static/con
+  -> HTTP 404
+GET /static/nul.txt
+  -> HTTP 404
+GET /static/con.txt
+  -> HTTP 404
+GET /static/nul.tar.gz
+  -> HTTP 404

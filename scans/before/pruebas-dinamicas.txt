@@ -1,0 +1,34 @@
+$ curl -s -I http://127.0.0.1:5000/
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.3 Python/3.12.3
+Date: Sat, 07 Nov 2026 02:03:46 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 690
+Connection: close
+
+
+$ curl -s -o /dev/null -w GET /console -> HTTP %{http_code}
+ http://127.0.0.1:5000/console
+GET /console -> HTTP 200
+
+$ curl -s http://127.0.0.1:5000/console | grep -o "Console Locked"
+Console Locked
+
+$ curl -s -o /dev/null -w POST con Origin falso -> HTTP %{http_code}
+ -X POST -H Origin: http://sitio-malicioso.example -d tarea=csrf http://127.0.0.1:5000/
+POST con Origin falso -> HTTP 302
+
+$ POST de 400000 caracteres
+HTTP 302
+GET /static/nul
+  -> HTTP 404
+GET /static/con
+  -> HTTP 404
+GET /static/nul.txt
+  -> HTTP 404
+GET /static/con.txt
+  -> HTTP 404
+GET /static/nul.tar.gz
+  -> HTTP 404
+$ cantidad de notas guardadas tras las pruebas (longitud del HTML):
+400680

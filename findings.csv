@@ -1,0 +1,13 @@
+prioridad,id,tipo,cwe,componente,descripcion,cvss31,vector_cvss31,epss,en_kev,explotable_hoy,estado_v1,evidencia_antes_despues
+1,V-01,CWE,CWE-489,app.py linea 19,Modo debug activo y consola Werkzeug expuesta,8.1,AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H,n/a,n/a,Si (requiere PIN),corregido en v1,/console 200 -> 404; Bandit B201 1 -> 0
+2,V-02,CWE,CWE-770,app.py lineas 11-13,Notas sin limite de tamano ni cantidad (DoS),7.5,AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H,n/a,n/a,Si,corregido en v1,400000 caracteres 302 -> 413; 501 caracteres -> 400; 35 POST: 28 ok y 7 con 429
+3,V-03,CWE,CWE-306,app.py lineas 8-15,Sin autenticacion,6.5,AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N,n/a,n/a,Si,riesgo residual aceptado (requiere rediseno),sin cambio
+4,V-04,CWE,CWE-497,Cabecera Server,Cabecera Server revela versiones,5.3,AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N,n/a,n/a,Si,corregido en v1,Server: Werkzeug/3.1.3 Python/3.12.3 -> Server: app
+5,V-05,CWE,CWE-352,templates/index.html linea 16 y app.py,Sin proteccion CSRF,4.3,AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N,n/a,n/a,Si,corregido en v1,POST con Origin falso 302 -> 400; con token valido 302
+6,V-06,CWE,CWE-1021,Cabeceras de respuesta,Clickjacking (sin X-Frame-Options),4.3,AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N,n/a,n/a,Si,corregido en v1,X-Frame-Options: DENY presente
+7,CVE-2025-66221,CVE,CWE-67,Werkzeug 3.1.3,safe_join(): nombres de dispositivo de Windows,5.3,AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L,0.02% (cvelogic 18/12/2025),No (CISA KEV 2026.11.09),No,corregido en v1 (Werkzeug 3.1.9),pip-audit 4 CVE -> 0
+8,CVE-2026-21860,CVE,CWE-67,Werkzeug 3.1.3,Misma falla con extensiones compuestas,5.3,AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L,0.42% (cvelogic 15/06/2026),No (CISA KEV 2026.11.09),No,corregido en v1 (Werkzeug 3.1.9),pip-audit 4 CVE -> 0
+9,CVE-2026-27199,CVE,CWE-67,Werkzeug 3.1.3,Misma falla otra variante,5.3,AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L,0.56% (cvelogic 15/06/2026),No (CISA KEV 2026.11.09),No,corregido en v1 (Werkzeug 3.1.9),pip-audit 4 CVE -> 0
+10,CVE-2026-102598,CVE,CWE-67,Werkzeug 3.1.3,Misma falla variante con NUL:,5.3 (vector Amazon Linux; NVD sin puntaje),AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L,sin dato publicado,No (CISA KEV 2026.11.09),No,corregido en v1 (Werkzeug 3.1.9),pip-audit 4 CVE -> 0
+11,V-07,CWE,CWE-693,Cabeceras de respuesta,Faltan CSP y nosniff,,,n/a,n/a,,corregido en v1,CSP y X-Content-Type-Options presentes
+12,CVE-2026-27205,CVE,CWE-524,Flask 3.1.2,La sesion no agrega Vary: Cookie,4.3,AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N,0.37% (cvelogic 15/06/2026),No (CISA KEV 2026.11.09),No,corregido antes de v0 (Flask 3.1.3),OSV: 0 vulnerabilidades en Flask 3.1.3
